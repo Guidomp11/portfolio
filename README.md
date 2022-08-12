@@ -6,7 +6,7 @@ Hi! I'm a fullstack developer specializing in the back-end.
 
 Front-end:
 - HTML.
-- STyles: CSS & SASS.
+- Styles: CSS & SASS.
 - Frameworks: React.js & Next.js.
 - State Manager: Redux & Redux-toolkit.
 
