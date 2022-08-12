@@ -11,7 +11,7 @@ Front-end:
 - State Manager: Redux & Redux-toolkit.
 
 Back-end:
-- Typescript & Javscript.
+- Typescript & Javascript.
 - Environment: Node.js.
 - Frameworks: Express.js - GraphQL - Serverless - SocketIO.
 - Databases: MongoDB & mySQL.
