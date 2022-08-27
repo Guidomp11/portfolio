@@ -10,10 +10,12 @@ module.exports = (sequelize, dataTypes) => {
         },
         email: {
             type: dataTypes.VARCHAR(255),
+            unique: true,
             allowNull: false,
         },
         username: {
             type: dataTypes.VARCHAR(255),
+            unique: true,
             allowNull: false,
         },
         password: {
