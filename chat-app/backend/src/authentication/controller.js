@@ -6,7 +6,7 @@ module.exports = {
         try {
             const { user } = req.body;
 
-            if(!user) throw new Error({ status: STATUS.BAD_REQUEST, message: "User information incomplete." });
+            if(!user) throw {status: STATUS.BAD_REQUEST, message: "User information incomplete." };
 
             const _user = await createUser(user);
 
@@ -16,6 +16,7 @@ module.exports = {
             });
         }catch(error) {
             const status = error.status || STATUS.SERVER_ERROR;
+
             return res.status(status).json({
                 success: false,
                 message: error.message
@@ -44,7 +45,7 @@ module.exports = {
         try {
             const { token } = req.headers["Authorization"];
 
-            if(!token) throw new Error({ status: STATUS.BAD_REQUEST, message: "Empty token." });
+            if(!token) throw { status: STATUS.BAD_REQUEST, message: "Empty token." };
 
             const _user = await authenticateUser(token);
 
