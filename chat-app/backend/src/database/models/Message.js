@@ -17,7 +17,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
         },
         message: {
-            type: dataTypes.VARCHAR(255),
+            type: dataTypes.STRING(255),
             allowNull: false,
         },
     };

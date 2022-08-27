@@ -9,21 +9,21 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         email: {
-            type: dataTypes.VARCHAR(255),
+            type: dataTypes.STRING(255),
             unique: true,
             allowNull: false,
         },
         username: {
-            type: dataTypes.VARCHAR(255),
+            type: dataTypes.STRING(255),
             unique: true,
             allowNull: false,
         },
         password: {
-            type: dataTypes.VARCHAR(255),
+            type: dataTypes.STRING(255),
             allowNull: false,
         },
         avatar: {
-            type: dataTypes.VARCHAR(255),
+            type: dataTypes.STRING(255),
             allowNull: false,
         },
     };
