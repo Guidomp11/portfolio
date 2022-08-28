@@ -42,7 +42,7 @@ const createUser = async (user) => {
 
 const authenticateUser = async (_token) => {
     try {
-        const _decryted_id = decrypt(_token);
+        const _decryted_id = await decrypt(_token);
 
         const _user = await findUserById(_decryted_id);
 

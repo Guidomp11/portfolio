@@ -43,8 +43,8 @@ module.exports = {
     },
     authenticate: async (req, res) => {
         try {
-            const { token } = req.headers["Authorization"];
-
+            const token = req.headers.authorization;
+            
             if(!token) throw { status: STATUS.BAD_REQUEST, message: "Empty token." };
 
             const _user = await authenticateUser(token);

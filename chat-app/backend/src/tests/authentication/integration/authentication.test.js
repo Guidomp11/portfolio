@@ -73,4 +73,22 @@ describe("Authentication Endpoints Test", () => {
             expect(res.body.success).toEqual(false);
         });
     });
+
+    describe("Authentication", () => {
+        it("should not authorize. Empty token", async () => {
+            const res = await request(app).post("/api/auth/authenticate");
+            
+            expect(res.statusCode).toEqual(STATUS.BAD_REQUEST);
+            expect(res.body).toHaveProperty("success");
+            expect(res.body.success).toEqual(false);
+        });
+        it("should authenticate user", async () => {
+            const TOKEN = await encrypt( 1 );
+            const res = await request(app).post("/api/auth/authenticate").send({}).set("authorization", TOKEN);
+
+            expect(res.statusCode).toEqual(STATUS.OK);
+            expect(res.body).toHaveProperty("success");
+            expect(res.body.success).toEqual(true);
+        });
+    });
 });
