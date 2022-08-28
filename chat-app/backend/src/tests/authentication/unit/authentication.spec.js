@@ -1,25 +1,35 @@
 const {
   createUser,
-  validateLogin,
-  authenticateUser,
   findUserByEmail,
   findUserById
 } = require("../../../services/authentication.service");
 
 describe("Authentication Tests", () => {
 
-  const USER = {
-    email: "test@email.com",
-    username: "test-username",
-    password: "test-password-123",
+  const USER_1 = {
+    id: 1,
+    email: "unit-test@email.com",
+    username: "unit-test-username",
+    password: "unit-test-password-123",
     avatar: "test-avatar",
   };
 
-  beforeEach(async () => {
-    console.log("BEFORE EACH TEST");
+  beforeAll(async () => {
+    await createUser(USER_1);
   });
 
-  test('Should register a user', async () => {
-    
+  describe('User finds', () => {
+    it("should find user by ID", async () => {
+      const result = await findUserById(USER_1.id);
+
+      expect(result.password).toBeUndefined();
+      expect(result.username).toBe(USER_1.username);
+    });
+
+    it("should find user by email", async () => {
+      const result = await findUserByEmail(USER_1.email);
+
+      expect(result.username).toBe(USER_1.username);
+    });
   });
 });
