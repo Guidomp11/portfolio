@@ -26,7 +26,7 @@ module.exports = {
     login: async (req, res) => {
         try {
             const { credentials } = req.body;
-
+            
             const _user = await validateLogin(credentials);
 
             return res.status(STATUS.OK).json({

@@ -8,7 +8,7 @@ const encrypt = async (_value) => await crypto.AES.encrypt(_value, SECRET_STRING
 const decrypt = async (_encrypted_data) => {
     if(!_encrypted_data) return null;
     
-    const bytes = crypto.AES.decrypt(_encrypted_data, SECRET_STRING);
+    const bytes = await crypto.AES.decrypt(_encrypted_data, SECRET_STRING);
     return bytes.toString(crypto.enc.Utf8);
 };
 
