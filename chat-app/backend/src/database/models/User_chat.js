@@ -26,5 +26,17 @@ module.exports = (sequelize, dataTypes) => {
 
     const User_chat = sequelize.define(alias, cols, config);
 
+    User_chat.associate = (models) => {
+        User_chat.belongsTo(models.User, {
+            as: "a_user_chats",
+            foreignKey: "user_id"
+        });
+
+        User_chat.belongsTo(models.Chat, {
+            as: "a_chat_user",
+            foreignKey: "chat_id"
+        });
+    };
+
     return User_chat;
 }
