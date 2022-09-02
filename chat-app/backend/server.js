@@ -2,9 +2,9 @@ require('dotenv').config();
 
 const app = require('./src');
 const http = require('http');
-const socketIoApp = require('./src/socketIO');
+const WebSocketServer = require('./src/WebSocketServer');
 
 const httpServer = http.createServer(app);
-socketIoApp(httpServer);
+WebSocketServer(httpServer);
 
 httpServer.listen(process.env.PORT || 4000);
