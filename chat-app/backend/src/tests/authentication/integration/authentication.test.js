@@ -1,7 +1,7 @@
 const request = require("supertest");
-const { STATUS } = require("../../../constants");
-const app = require("../../../index");
-const { encrypt } = require("../../../utils/encrypt");
+const { STATUS } = require("../../../Rest/constants");
+const app = require("../../../Rest/index");
+const { encrypt } = require("../../../Rest/utils/encrypt");
 
 describe("Authentication Endpoints Test", () => {
 
@@ -53,6 +53,7 @@ describe("Authentication Endpoints Test", () => {
             expect(res.body).toHaveProperty("message");
             expect(res.body.success).toEqual(false);
         });
+        
     });
 
     describe("Login", () => {

@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const app = require('./src');
+const app = require('./src/Rest');
 const http = require('http');
 const WebSocketServer = require('./src/WebSocket');
 
