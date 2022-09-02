@@ -1,16 +1,13 @@
 import axios from 'axios';
-import { get } from "../storage";
 
 const axiosInstance = axios.create({
-    baseURL: process.env.API_URL,
+    baseURL: process.env.NEXT_PUBLIC_APP_API_URL,
 });
 
 axiosInstance.interceptors.request.use(
   async (config) => {
     try {
-        const token = await get("@token");
-
-        if(!token || token.trim() === "") throw new Error("Empty Token.");
+        const token = "Here is the token";
 
         config.headers.Authorization = token;
 
