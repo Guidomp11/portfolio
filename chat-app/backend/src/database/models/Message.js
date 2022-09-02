@@ -30,5 +30,17 @@ module.exports = (sequelize, dataTypes) => {
 
     const Message = sequelize.define(alias, cols, config);
 
+    Message.associate = (models) => {
+        Message.belongsTo(models.User, {
+            as: "message_owner",
+            foreignKey: "owner_id"
+        });
+
+        Message.belongsTo(models.Chat, {
+            as: "chat_owner",
+            foreignKey: "chat_id"
+        });
+    };
+
     return Message;
 }

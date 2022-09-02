@@ -12,10 +12,18 @@ module.exports = {
             user_id: {
                 type: sequelize.DataTypes.INTEGER(10).UNSIGNED,
                 allowNull: false,
+                references: {
+                    model: 'users',
+                    key: 'id'
+                }
             },
             chat_id: {
                 type: sequelize.DataTypes.INTEGER(10).UNSIGNED,
                 allowNull: false,
+                references: {
+                    model: 'chats',
+                    key: 'id'
+                }
             },
             created_at: sequelize.DataTypes.DATE,
             updated_at: sequelize.DataTypes.DATE

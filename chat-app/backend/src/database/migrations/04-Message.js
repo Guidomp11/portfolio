@@ -12,10 +12,18 @@ module.exports = {
             owner_id: {
                 type: sequelize.DataTypes.INTEGER(10).UNSIGNED,
                 allowNull: false,
+                references: {
+                    model: 'users',
+                    key: 'id'
+                }
             },
             chat_id: {
                 type: sequelize.DataTypes.INTEGER(10).UNSIGNED,
                 allowNull: false,
+                references: {
+                    model: 'chats',
+                    key: 'id'
+                }
             },
             message: {
                 type: sequelize.DataTypes.STRING,
