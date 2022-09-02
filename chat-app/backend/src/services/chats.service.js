@@ -26,7 +26,7 @@ const getChats = async (user_id) => {
     }
 };
 
-const getMessages = async () => {
+const getMessages = async (chat_id) => {
 
 };
 
