@@ -1,6 +1,6 @@
 const db = require("../database/models");
-const { STATUS } = require("../constants");
-const { encrypt, decrypt } = require("../utils/encrypt");
+const { STATUS } = require("../Rest/constants");
+const { encrypt, decrypt } = require("../Rest/utils/encrypt");
 
 const findUserById = async (id) => {
     try {

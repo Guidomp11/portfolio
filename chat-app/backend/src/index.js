@@ -12,8 +12,10 @@ app.use(express.urlencoded({limit: '5mb'}));
 //#endregion
 
 //#region AUTHENTICATION ROUTES
-const authRouter = require("./authentication/index.routes");
-app.use("/api/auth", authRouter);
+const { authentication, chats } = require("./Rest/routes/index.routes");
+
+app.use("/api/auth", authentication);
+app.use("/api/chats", chats);
 //#endregion
 
 //#region EVENTS

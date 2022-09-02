@@ -1,5 +1,5 @@
 const { STATUS } = require("../constants");
-const { createUser, authenticateUser, validateLogin } = require("../services/authentication.service");
+const { createUser, authenticateUser, validateLogin } = require("../../services/authentication.service");
 
 module.exports = {
     register: async (req, res) => {
