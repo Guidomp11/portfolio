@@ -5,7 +5,7 @@ const { STATUS } = require("../constants");
 const { decrypt } = require("../utils/encrypt");
 const { JWT_SECRET } = process.env;
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     try {
         const _token_encrypted = req.header("Authorization");
         const _token = await decrypt(token_encrypted);
