@@ -9,3 +9,8 @@ const CHATS = [
         name: null
     }
 ];
+
+module.exports = {
+    MESSAGES,
+    CHATS
+};

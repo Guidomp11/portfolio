@@ -6,16 +6,15 @@ const {
 
 describe("Authentication Tests", () => {
 
-  const USER_1 = {
-    id: 1,
-    email: "unit-test@email.com",
-    username: "unit-test-username",
-    password: "unit-test-password-123",
-    avatar: "test-avatar",
-  };
+  let USER_1;
 
   beforeAll(async () => {
-    await createUser(USER_1);
+    USER_1 = await createUser({
+      email: "unit-test@email.com",
+      username: "unit-test-username",
+      password: "unit-test-password-123",
+      avatar: "test-avatar",
+    });
   });
 
   describe('User finds', () => {
@@ -28,8 +27,8 @@ describe("Authentication Tests", () => {
 
     it("should find user by email", async () => {
       const result = await findUserByEmail(USER_1.email);
-      console.log(result)
-      //expect(result.username).toBe(USER_1.username);
+      
+      expect(result.username).toBe(USER_1.username);
     });
   });
 });

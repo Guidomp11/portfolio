@@ -21,7 +21,7 @@ const getChats = async (user_id) => {
 
         if(!_chats) return [];
         
-        return _chats.map(_chat => _chat.get({plain: true}));
+        return _chats.map(_chat => _chat.toJSON());
     }catch(error) {
         throw { status: STATUS.SERVER_ERROR, message: error.message };
     }
@@ -54,6 +54,8 @@ const createMessage = async (message) => {
 
 const createChat = async (chat, user_id_a, user_id_b) => {
     try {
+        if(user_id_a === user_id_b) throw { status: STATUS.BAD_REQUEST, error: "Cannot create a chat with one user" };
+
         const _chat = await db.Chat.create(chat);
 
         await db.User_chat.create({
@@ -66,8 +68,8 @@ const createChat = async (chat, user_id_a, user_id_b) => {
             user_id: user_id_b
         });
 
-        return;
-    }catch(Error) {
+        return _chat;
+    }catch(error) {
         throw { status: STATUS.SERVER_ERROR, message: error.message };
     }
 }
