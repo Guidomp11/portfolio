@@ -23,7 +23,7 @@ export async function middleware(req) {
         if(!result.success && URL.pathname.includes("/app")) throw new Error("Invalid Credentials");
 
         if(result.success && ( URL.pathname.includes("/login") || URL.pathname.includes("/register") )) {
-            URL.pathname = '/app/chats';
+            URL.pathname = '/app';
             return NextResponse.redirect(URL);
         }
     }catch(error) {
