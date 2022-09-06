@@ -27,13 +27,13 @@ const findUserByEmail = async (_email) => {
 const createUser = async (user) => {
     try {
         user.password = await encrypt(user.password);
-
+        
         const _user = (await db.User.create(user))?.toJSON();
         delete _user.password;
-
+        
         return {
             ..._user,
-            token: encrypt(_user.id.toString())
+            token: await encrypt(_user.id.toString())
         };
     }catch(error) {
         throw { status: STATUS.SERVER_ERROR, message: error.message };

@@ -10,7 +10,7 @@ module.exports = {
             if(!user) throw {status: STATUS.BAD_REQUEST, message: "User information incomplete." };
 
             const _user = await createUser(user);
-
+            
             await JWTGenerator({
                 user: { id: _user.id }
             },
