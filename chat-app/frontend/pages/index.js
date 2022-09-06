@@ -23,7 +23,7 @@ export default function Login() {
 
   const onSubmit = async () => {
     try{
-      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_APP_API_URL}/api/auth/login`, {
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
         credentials: {
           email,
           password,

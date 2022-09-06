@@ -25,7 +25,7 @@ export default function Register() {
 
   const onSubmit = async () => {
     try{
-      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_APP_API_URL}/api/auth/register`, {
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, {
         user: {
           email,
           username,
