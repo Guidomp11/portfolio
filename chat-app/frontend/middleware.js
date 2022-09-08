@@ -7,9 +7,10 @@ export async function middleware(req) {
     try {
         const token = req.cookies.get('chatAppToken');
         
-        if(!token && !URL.pathname.includes("login")) throw new Error("You must be logged in to use the App");
+        //if(!token && URL.pathname.includes("app")) throw new Error("You must be logged in to use the App");
 
         if(!token && URL.pathname.includes("login")) return NextResponse.next();
+        if(!token && URL.pathname.includes("register")) return NextResponse.next();
 
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/authenticate`, {
             method: "POST",
@@ -26,6 +27,8 @@ export async function middleware(req) {
             URL.pathname = '/app';
             return NextResponse.redirect(URL);
         }
+
+        return NextResponse.next();
     }catch(error) {
         if(!URL.pathname.includes('/login')){
             URL.pathname = '/login';
