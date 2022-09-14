@@ -8,13 +8,13 @@ const { JWT_SECRET } = process.env;
 module.exports = async (req, res, next) => {
     try {
         const _token_encrypted = req.header("Authorization");
-        const _token = await decrypt(token_encrypted);
-
+        const _token = await decrypt(_token_encrypted);
+        
         if(!_token) throw new Error("Invalid Token");
 
         const _encrypt = jwt.verify(_token, JWT_SECRET);
-        req.user = _encrypt.user;
         
+        req.user = _encrypt.user;
         next();
     }catch(error) {
         return res.status(STATUS.UNAUTHORIZED).json({

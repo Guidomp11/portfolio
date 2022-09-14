@@ -10,7 +10,7 @@ module.exports = async (payload, onSuccess, onFailed) => {
         expiresIn: "30d"
     }, async (error, token) => {        
         if(error) onFailed({ status: STATUS.SERVER_ERROR, message: "Cannot generate JWT" });
-
+        
         const _encrypted_token = await encrypt(token);
         onSuccess(_encrypted_token);
     });

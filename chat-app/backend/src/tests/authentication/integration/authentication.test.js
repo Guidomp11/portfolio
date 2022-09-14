@@ -1,7 +1,8 @@
 const request = require("supertest");
 const { STATUS } = require("../../../Rest/constants");
 const app = require("../../../Rest/index");
-const { encrypt } = require("../../../Rest/utils/encrypt");
+const JWTGenerator = require("../../../Rest/utils/JWTGenerator");
+const { createUser } = require("../../../services/authentication.service");
 
 describe("Authentication Endpoints Test", () => {
 
@@ -79,17 +80,31 @@ describe("Authentication Endpoints Test", () => {
         it("should not authorize. Empty token", async () => {
             const res = await request(app).post("/api/auth/authenticate");
             
-            expect(res.statusCode).toEqual(STATUS.BAD_REQUEST);
+            expect(res.statusCode).toEqual(STATUS.UNAUTHORIZED);
             expect(res.body).toHaveProperty("success");
             expect(res.body.success).toEqual(false);
         });
         it("should authenticate user", async () => {
-            const TOKEN = await encrypt( 1 );
-            const res = await request(app).post("/api/auth/authenticate").send({}).set("authorization", TOKEN);
+            const _user = await createUser({
+                email: "to-autjenticate@email.com",
+                username: "to-authenticate-username",
+                password: "test-password-123",
+                avatar: "test-avatar",
+            });
+            await JWTGenerator({
+                user: { id: _user.id }
+            },
+                async (token) => {
+                    const res = await request(app).post("/api/auth/authenticate").send({}).set("authorization", token);
 
-            expect(res.statusCode).toEqual(STATUS.OK);
-            expect(res.body).toHaveProperty("success");
-            expect(res.body.success).toEqual(true);
+                    expect(res.statusCode).toEqual(STATUS.OK);
+                    expect(res.body).toHaveProperty("success");
+                    expect(res.body.success).toEqual(true);
+                },
+                ({ status, error }) => {
+                    expect(status).toEqual(STATUS.SERVER_ERROR);
+                }
+            );            
         });
     });
 });

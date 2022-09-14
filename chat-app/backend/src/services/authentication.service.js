@@ -31,20 +31,15 @@ const createUser = async (user) => {
         const _user = (await db.User.create(user))?.toJSON();
         delete _user.password;
         
-        return {
-            ..._user,
-            token: await encrypt(_user.id.toString())
-        };
+        return _user;
     }catch(error) {
         throw { status: STATUS.SERVER_ERROR, message: error.message };
     }
 };
 
-const authenticateUser = async (_token) => {
-    try {
-        const _decryted_id = await decrypt(_token);
-
-        const _user = await findUserById(_decryted_id);
+const authenticateUser = async (id) => {
+    try {        
+        const _user = await findUserById(id);
 
         if(!_user) throw { status: STATUS.NOT_FOUND, message: "User not Found." };
 
@@ -68,10 +63,7 @@ const validateLogin = async (credentials) => {
 
         delete _user.password;
 
-        return {
-            ..._user,
-            token: encrypt(_user.id.toString())
-        };
+        return _user;
     }catch(error) {
         throw { status: STATUS.SERVER_ERROR, message: error.message };
     }
