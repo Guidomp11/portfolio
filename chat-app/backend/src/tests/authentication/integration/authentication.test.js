@@ -104,7 +104,7 @@ describe("Authentication Endpoints Test", () => {
                 ({ status, error }) => {
                     expect(status).toEqual(STATUS.SERVER_ERROR);
                 }
-            );            
+            );
         });
     });
 });
