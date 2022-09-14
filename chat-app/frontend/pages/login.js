@@ -31,7 +31,7 @@ export default function Login() {
       });
       
       if(!data.success) throw new Error("Registration Error");
-
+      
       saveToken(data.user.token);
       router.push("/app/chats");
     }catch(error) {

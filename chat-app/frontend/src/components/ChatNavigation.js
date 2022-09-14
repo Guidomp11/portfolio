@@ -15,7 +15,10 @@ export default function ChatNavigation({ _chats, selectChat }) {
                             onClick={() => selectChat(_chat.id)}
                         >
                             <img src="/vercel.svg" alt="avatar-image" />
-                            <h4>{_chat.chat}</h4>
+                            <div className={styles.info}>
+                                <h4>{_chat.a_chat_user.username}</h4>
+                                <p>{_chat.a_chat_user.user_messages[0].message}</p>
+                            </div>
                         </div>
                     ))
                 }

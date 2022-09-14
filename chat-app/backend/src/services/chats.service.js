@@ -13,7 +13,7 @@ const getChats = async (user_id) => {
                         association: "user_messages",
                         attributes: ["owner_id", "message"],
                         limit: 1
-                    }],                
+                    }],
                 },
                 { association: "a_user_chats", attributes: ["name"] },
             ]

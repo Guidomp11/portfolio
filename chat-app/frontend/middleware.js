@@ -5,13 +5,11 @@ export async function middleware(req) {
     const URL = req.nextUrl.clone();
     
     try {
-        const token = req.cookies.get('chatAppToken');
-        
-        //if(!token && URL.pathname.includes("app")) throw new Error("You must be logged in to use the App");
+        const token = req.cookies.get('chatAppToken');        
 
         if(!token && URL.pathname.includes("login")) return NextResponse.next();
         if(!token && URL.pathname.includes("register")) return NextResponse.next();
-
+        
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/authenticate`, {
             method: "POST",
             headers: {
