@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
-import { getToken } from "./src/backend";
 
 export async function middleware(req) {
     const URL = req.nextUrl.clone();
     
     try {
-        const token = req.cookies.get('chatAppToken');        
-
-        if(!token && URL.pathname.includes("login")) return NextResponse.next();
-        if(!token && URL.pathname.includes("register")) return NextResponse.next();
+        const token = req.cookies.get('chatAppToken');
+        
+        if((!token || token === undefined) && URL.pathname.includes("login")) return NextResponse.next();
+        if((!token || token === undefined) && URL.pathname.includes("register")) return NextResponse.next();
         
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/authenticate`, {
             method: "POST",

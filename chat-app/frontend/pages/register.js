@@ -37,7 +37,7 @@ export default function Register() {
       if(!data.success) throw new Error("Registration Error");
 
       saveToken(data.user.token);
-      router.push("/app/chats");
+      router.push("/app");
     }catch(error) {
       const { message } = error.response.data;
       setError(message || "Registration Error.");

@@ -18,7 +18,7 @@ const getChats = async (user_id) => {
                 { association: "a_user_chats", attributes: ["name"] },
             ]
         });
-
+        
         if(!_chats) return [];
         
         return _chats.map(_chat => _chat.toJSON());

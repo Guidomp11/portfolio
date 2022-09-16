@@ -1,7 +1,7 @@
 import styles from "../styles/Chats.module.scss";
 import Input from "./Input";
 
-export default function Chat({ messages }) {
+export default function Chat({ chatName, messages }) {
     const user = "Guidop1";
     
     if(!messages) {
@@ -11,7 +11,7 @@ export default function Chat({ messages }) {
     return(
         <div className={styles.chat}>
             <div className={styles.header}>
-                <h1>{messages[0].message_owner.username}</h1>
+                <h1>{chatName}</h1>
                 <img src="/vercel.svg" alt="avatar-image" />
             </div>
             <div className={styles.body}>
